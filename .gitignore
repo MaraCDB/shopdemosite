@@ -18,6 +18,9 @@ dist
 # Brainstorming visual companion
 .superpowers
 
+# Corel autosave junk
+**/Conservazione automatica Corel/
+
 # Logs
 *.log
 npm-debug.log*
