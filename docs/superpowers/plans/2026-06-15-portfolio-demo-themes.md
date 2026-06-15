@@ -297,7 +297,7 @@ Expected: errori "Cannot find module '@/demos/classic/components/Header'" — ve
 **Files:**
 - Move: `src/components/Header.tsx` → `src/demos/classic/components/Header.tsx`
 - Move: `src/components/Footer.tsx` → `src/demos/classic/components/Footer.tsx`
-- Move: `src/components/Carousel.tsx` → `src/demos/classic/components/Carousel.tsx`
+- Move: `src/components/Carousel.tsx` → `src/components/ui/Carousel.tsx` (condiviso: usato da Classic e Nature)
 - Move: `src/components/OfferCard.tsx` → `src/demos/classic/components/OfferCard.tsx`
 - Move: `src/data/products.ts` → `src/demos/classic/data/products.ts`
 - Move: `src/data/offers.ts` → `src/demos/classic/data/offers.ts`
@@ -309,7 +309,7 @@ Expected: errori "Cannot find module '@/demos/classic/components/Header'" — ve
 mkdir -p src/demos/classic/components src/demos/classic/data src/routes/demo/classic
 git mv src/components/Header.tsx src/demos/classic/components/Header.tsx
 git mv src/components/Footer.tsx src/demos/classic/components/Footer.tsx
-git mv src/components/Carousel.tsx src/demos/classic/components/Carousel.tsx
+git mv src/components/Carousel.tsx src/components/ui/Carousel.tsx
 git mv src/components/OfferCard.tsx src/demos/classic/components/OfferCard.tsx
 git mv src/data/products.ts src/demos/classic/data/products.ts
 git mv src/data/offers.ts src/demos/classic/data/offers.ts
@@ -335,7 +335,7 @@ Modifiche esatte (una stringa ciascuno):
 
 In tutti i file che importavano i componenti/dati spostati, aggiornare i percorsi:
 - Import dei dati: `@/data/products` → `@/demos/classic/data/products`; `@/data/offers` → `@/demos/classic/data/offers`. Include anche import relativi tipo `'../../data/products'` in `src/routes/demo/classic/products/$productId.tsx` → `@/demos/classic/data/products`.
-- Import componenti nelle route: `@/components/Carousel` → `@/demos/classic/components/Carousel`; `@/components/OfferCard` → `@/demos/classic/components/OfferCard`.
+- Import componenti nelle route: `@/components/Carousel` → `@/components/ui/Carousel` (condiviso); `@/components/OfferCard` → `@/demos/classic/components/OfferCard`.
 - In `Carousel.tsx`/`OfferCard.tsx`/`Header.tsx`/`Footer.tsx` non c'erano import incrociati tra loro tranne tipi: `OfferCard.tsx` importa `@/data/offers` → `@/demos/classic/data/offers`.
 
 Comando per trovare i riferimenti residui da correggere:
@@ -888,40 +888,48 @@ Expected: errore "Cannot find ... /demo/nature/index" o nessun child route. Proc
 **Files:**
 - Create: `src/routes/demo/nature/index.tsx`
 
-- [ ] **Step 1: Creare `src/routes/demo/nature/index.tsx`** (hero foto + card overlap + blocchi)
+- [ ] **Step 1: Creare `src/routes/demo/nature/index.tsx`** (carousel a tema + blocchi + banner cassa)
 
 ```tsx
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { Carousel } from '@/components/ui/Carousel'
+import type { CarouselSlide } from '@/components/ui/Carousel'
 import { natureProducts } from '@/demos/nature/data/products'
 
 export const Route = createFileRoute('/demo/nature/')({
   component: NatureHome,
 })
 
+const heroSlides: CarouselSlide[] = [
+  {
+    image: '/resources/002_green_benvenuti.png',
+    alt: 'Benvenuti nella nostra bottega',
+    caption: 'Buono, pulito e del territorio',
+    subcaption: 'Cibo biologico selezionato dai piccoli produttori locali',
+  },
+  {
+    image: '/resources/002_green_prodotti.png',
+    alt: 'I nostri prodotti',
+    caption: 'I nostri prodotti',
+    subcaption: 'Una selezione curata, stagionale e a filiera corta',
+    href: '/demo/nature/prodotti',
+  },
+  {
+    image: '/resources/002_green_contattaci.png',
+    alt: 'Contattaci',
+    caption: 'Vieni a trovarci',
+    subcaption: 'Ti aspettiamo in bottega a Rovereto',
+    href: '/demo/nature/contatti',
+  },
+]
+
 function NatureHome() {
   const featured = natureProducts.slice(0, 3)
   return (
     <div>
-      {/* Hero con card in overlap */}
+      {/* Carousel hero a tema */}
       <section className="max-w-6xl mx-auto px-4 pt-8">
-        <div className="relative rounded-[var(--radius)] overflow-hidden" style={{ aspectRatio: '16/8' }}>
-          <img src="/resources/shop3.png" alt="Bottega Nature" className="w-full h-full object-cover" />
-          <div className="absolute left-4 bottom-4 md:left-8 md:bottom-8 max-w-sm rounded-[var(--radius)] p-6" style={{ background: 'var(--bg)' }}>
-            <h1 className="text-2xl md:text-3xl font-bold" style={{ color: 'var(--primary)' }}>
-              Buono, pulito e del territorio
-            </h1>
-            <p className="text-sm mt-2 text-[var(--muted)]">
-              Una bottega di cibo biologico selezionato dai piccoli produttori locali.
-            </p>
-            <Link
-              to="/demo/nature/prodotti"
-              className="inline-block mt-4 px-4 py-2 text-sm font-semibold rounded-[var(--radius)]"
-              style={{ background: 'var(--primary)', color: 'var(--primary-contrast)' }}
-            >
-              Scopri i prodotti
-            </Link>
-          </div>
-        </div>
+        <Carousel slides={heroSlides} />
       </section>
 
       {/* Valori — tre blocchi */}
@@ -936,6 +944,17 @@ function NatureHome() {
             <p className="text-sm text-[var(--muted)] mt-2 leading-relaxed">{b.d}</p>
           </div>
         ))}
+      </section>
+
+      {/* Banner "vieni a trovarci" con immagine cassa */}
+      <section className="max-w-6xl mx-auto px-4 pb-14">
+        <Link to="/demo/nature/contatti" className="group block relative rounded-[var(--radius)] overflow-hidden" style={{ aspectRatio: '21/8' }}>
+          <img src="/resources/002_green_cassa.png" alt="Vieni a trovarci in bottega" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-transparent flex flex-col justify-center p-6 md:p-10">
+            <h2 className="text-white text-2xl md:text-3xl font-bold drop-shadow">Vieni a trovarci in bottega</h2>
+            <p className="text-white/90 text-sm md:text-base mt-1 drop-shadow max-w-sm">Ti accogliamo con i sapori del territorio. Scopri dove siamo.</p>
+          </div>
+        </Link>
       </section>
 
       {/* Prodotti in evidenza — layout asimmetrico */}
