@@ -15,6 +15,9 @@ dist
 # Local Netlify folder
 .netlify
 
+# Brainstorming visual companion
+.superpowers
+
 # Logs
 *.log
 npm-debug.log*
