@@ -1,5 +1,5 @@
 import { Calendar, Share2, Download, MessageCircle } from 'lucide-react'
-import type { Offer } from '@/data/offers'
+import type { Offer } from '@/demos/classic/data/offers'
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('it-IT', {

@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 
-export const Route = createFileRoute('/contact')({
+export const Route = createFileRoute('/demo/classic/contact')({
   component: ContactPage,
 })
 

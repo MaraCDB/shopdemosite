@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { categories } from '@/data/products'
+import { categories } from '@/demos/classic/data/products'
 import { ShoppingBag } from 'lucide-react'
 
-export const Route = createFileRoute('/products/')({
+export const Route = createFileRoute('/demo/classic/products/')({
   component: ProductsPage,
 })
 
@@ -21,7 +21,7 @@ function ProductsPage() {
         {categories.map((cat) => (
           <Link
             key={cat.slug}
-            to="/products/category/$category"
+            to="/demo/classic/products/category/$category"
             params={{ category: cat.slug }}
             className="group rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow bg-white"
           >

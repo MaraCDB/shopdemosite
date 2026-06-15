@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Facebook, Instagram, Twitter, ArrowUpRight } from 'lucide-react'
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -6,34 +6,11 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {/* Business Info */}
         <div>
-          <h3 className="text-white font-bold text-lg mb-1">Small Business</h3>
-          <p className="text-sm font-medium text-gray-300 mb-3">Demo Studio Site</p>
+          <h3 className="text-white font-bold text-lg mb-3">Small Business</h3>
           <p className="text-sm leading-relaxed text-gray-400">
-            Sito demo creato da Mara. Realizzo siti web su misura — come li
-            vuoi tu — con pacchetti pensati anche per piccole imprese e attività
-            locali.
+            Prodotti e servizi di qualità per la nostra comunità. Qualità,
+            cortesia e attenzione al cliente dal 2010.
           </p>
-          <p className="text-sm leading-relaxed text-gray-400 mt-3">
-            Per informazioni e preventivi:
-          </p>
-          <div className="mt-3 flex flex-wrap items-center gap-3">
-            <a
-              href="https://mara-melchiori.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm transition-colors hover:bg-gray-200"
-            >
-              Visita il mio sito
-              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
-              href="mailto:mara.melchiori@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg border border-gray-600 px-4 py-2 text-sm font-semibold text-gray-200 transition-colors hover:border-gray-400 hover:text-white"
-            >
-              <Mail size={16} />
-              Contattami
-            </a>
-          </div>
         </div>
 
         {/* Contact Info */}
