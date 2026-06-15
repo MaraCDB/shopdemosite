@@ -14,6 +14,7 @@ import { Route as DemoNatureRouteImport } from './routes/demo/nature'
 import { Route as DemoClassicRouteImport } from './routes/demo/classic'
 import { Route as DemoNatureIndexRouteImport } from './routes/demo/nature/index'
 import { Route as DemoClassicIndexRouteImport } from './routes/demo/classic/index'
+import { Route as DemoNatureStoriaRouteImport } from './routes/demo/nature/storia'
 import { Route as DemoNatureProdottiRouteImport } from './routes/demo/nature/prodotti'
 import { Route as DemoNatureMarchiRouteImport } from './routes/demo/nature/marchi'
 import { Route as DemoClassicOffersRouteImport } from './routes/demo/classic/offers'
@@ -48,6 +49,11 @@ const DemoClassicIndexRoute = DemoClassicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DemoClassicRoute,
+} as any)
+const DemoNatureStoriaRoute = DemoNatureStoriaRouteImport.update({
+  id: '/storia',
+  path: '/storia',
+  getParentRoute: () => DemoNatureRoute,
 } as any)
 const DemoNatureProdottiRoute = DemoNatureProdottiRouteImport.update({
   id: '/prodotti',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/demo/classic/offers': typeof DemoClassicOffersRoute
   '/demo/nature/marchi': typeof DemoNatureMarchiRoute
   '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
+  '/demo/nature/storia': typeof DemoNatureStoriaRoute
   '/demo/classic/': typeof DemoClassicIndexRoute
   '/demo/nature/': typeof DemoNatureIndexRoute
   '/demo/classic/products/$productId': typeof DemoClassicProductsProductIdRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/demo/classic/offers': typeof DemoClassicOffersRoute
   '/demo/nature/marchi': typeof DemoNatureMarchiRoute
   '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
+  '/demo/nature/storia': typeof DemoNatureStoriaRoute
   '/demo/classic': typeof DemoClassicIndexRoute
   '/demo/nature': typeof DemoNatureIndexRoute
   '/demo/classic/products/$productId': typeof DemoClassicProductsProductIdRoute
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/demo/classic/offers': typeof DemoClassicOffersRoute
   '/demo/nature/marchi': typeof DemoNatureMarchiRoute
   '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
+  '/demo/nature/storia': typeof DemoNatureStoriaRoute
   '/demo/classic/': typeof DemoClassicIndexRoute
   '/demo/nature/': typeof DemoNatureIndexRoute
   '/demo/classic/products/$productId': typeof DemoClassicProductsProductIdRoute
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/demo/classic/offers'
     | '/demo/nature/marchi'
     | '/demo/nature/prodotti'
+    | '/demo/nature/storia'
     | '/demo/classic/'
     | '/demo/nature/'
     | '/demo/classic/products/$productId'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/demo/classic/offers'
     | '/demo/nature/marchi'
     | '/demo/nature/prodotti'
+    | '/demo/nature/storia'
     | '/demo/classic'
     | '/demo/nature'
     | '/demo/classic/products/$productId'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/demo/classic/offers'
     | '/demo/nature/marchi'
     | '/demo/nature/prodotti'
+    | '/demo/nature/storia'
     | '/demo/classic/'
     | '/demo/nature/'
     | '/demo/classic/products/$productId'
@@ -236,6 +248,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/demo/classic/'
       preLoaderRoute: typeof DemoClassicIndexRouteImport
       parentRoute: typeof DemoClassicRoute
+    }
+    '/demo/nature/storia': {
+      id: '/demo/nature/storia'
+      path: '/storia'
+      fullPath: '/demo/nature/storia'
+      preLoaderRoute: typeof DemoNatureStoriaRouteImport
+      parentRoute: typeof DemoNatureRoute
     }
     '/demo/nature/prodotti': {
       id: '/demo/nature/prodotti'
@@ -342,12 +361,14 @@ const DemoNatureProdottiRouteWithChildren =
 interface DemoNatureRouteChildren {
   DemoNatureMarchiRoute: typeof DemoNatureMarchiRoute
   DemoNatureProdottiRoute: typeof DemoNatureProdottiRouteWithChildren
+  DemoNatureStoriaRoute: typeof DemoNatureStoriaRoute
   DemoNatureIndexRoute: typeof DemoNatureIndexRoute
 }
 
 const DemoNatureRouteChildren: DemoNatureRouteChildren = {
   DemoNatureMarchiRoute: DemoNatureMarchiRoute,
   DemoNatureProdottiRoute: DemoNatureProdottiRouteWithChildren,
+  DemoNatureStoriaRoute: DemoNatureStoriaRoute,
   DemoNatureIndexRoute: DemoNatureIndexRoute,
 }
 
