@@ -1,11 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
 
 export interface CarouselSlide {
   image: string
   alt: string
   caption?: string
   subcaption?: string
+  /** Optional route to navigate to when the slide is clicked. */
+  href?: string
 }
 
 interface CarouselProps {
@@ -29,29 +32,43 @@ export function Carousel({ slides, autoplayMs = 5000 }: CarouselProps) {
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-gray-100" style={{ aspectRatio: '16/7' }}>
       {/* Slides */}
-      {slides.map((slide, i) => (
-        <div
-          key={i}
-          className="absolute inset-0 transition-opacity duration-700"
-          style={{ opacity: i === current ? 1 : 0, pointerEvents: i === current ? 'auto' : 'none' }}
-        >
-          <img
-            src={slide.image}
-            alt={slide.alt}
-            className="w-full h-full object-cover"
-          />
-          {(slide.caption || slide.subcaption) && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-6 md:p-10">
-              {slide.caption && (
-                <h2 className="text-white text-2xl md:text-4xl font-bold drop-shadow">{slide.caption}</h2>
-              )}
-              {slide.subcaption && (
-                <p className="text-white/85 text-sm md:text-base mt-1 drop-shadow">{slide.subcaption}</p>
-              )}
-            </div>
-          )}
-        </div>
-      ))}
+      {slides.map((slide, i) => {
+        const content = (
+          <>
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="w-full h-full object-cover"
+            />
+            {(slide.caption || slide.subcaption) && (
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-6 md:p-10">
+                {slide.caption && (
+                  <h2 className="text-white text-2xl md:text-4xl font-bold drop-shadow">{slide.caption}</h2>
+                )}
+                {slide.subcaption && (
+                  <p className="text-white/85 text-sm md:text-base mt-1 drop-shadow">{slide.subcaption}</p>
+                )}
+              </div>
+            )}
+          </>
+        )
+
+        return (
+          <div
+            key={i}
+            className="absolute inset-0 transition-opacity duration-700"
+            style={{ opacity: i === current ? 1 : 0, pointerEvents: i === current ? 'auto' : 'none' }}
+          >
+            {slide.href ? (
+              <Link to={slide.href} className="block w-full h-full group">
+                {content}
+              </Link>
+            ) : (
+              content
+            )}
+          </div>
+        )
+      })}
 
       {/* Prev / Next Buttons */}
       <button

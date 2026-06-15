@@ -1,8 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { Carousel } from '@/components/Carousel'
 import type { CarouselSlide } from '@/components/Carousel'
-import products from '@/data/products'
-import { Link } from '@tanstack/react-router'
+import { categories } from '@/data/products'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -10,22 +9,24 @@ export const Route = createFileRoute('/')({
 
 const heroSlides: CarouselSlide[] = [
   {
-    image: '/placeholder.png',
-    alt: 'Welcome to Small Business',
-    caption: 'Welcome to Small Business',
-    subcaption: 'Quality products and services for our community',
+    image: '/resources/shop3.png',
+    alt: 'Benvenuti da Small Business',
+    caption: 'Benvenuti da Small Business',
+    subcaption: 'Prodotti e servizi di qualità per la nostra comunità',
   },
   {
-    image: '/placeholder.png',
-    alt: 'Our Products',
-    caption: 'Explore Our Products',
-    subcaption: 'Find exactly what you need',
+    image: '/resources/shop2.png',
+    alt: 'I Nostri Prodotti',
+    caption: 'Scopri i Nostri Prodotti',
+    subcaption: 'Trova esattamente ciò che cerchi',
+    href: '/products',
   },
   {
-    image: '/placeholder.png',
-    alt: 'Get in Touch',
-    caption: 'Visit Us Today',
-    subcaption: '123 Main Street, Springfield — Mon–Fri 9am to 6pm',
+    image: '/resources/shop1.png',
+    alt: 'Vieni a Trovarci',
+    caption: 'Vieni a Trovarci',
+    subcaption: 'Stazione FS di Rovereto — Lun–Ven 9:00–18:00',
+    href: '/contact',
   },
 ]
 
@@ -41,33 +42,32 @@ function HomePage() {
       <section className="max-w-6xl mx-auto px-4 py-8 text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-3">Small Business</h1>
         <p className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
-          We're a locally owned business dedicated to serving our community with quality
-          products and exceptional service. Browse our catalog below.
+          Siamo un'attività a conduzione locale, dedicata alla nostra comunità con
+          prodotti di qualità e un servizio impeccabile. Sfoglia il nostro catalogo qui sotto.
         </p>
       </section>
 
-      {/* Products */}
+      {/* Product Categories */}
       <section className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">Our Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
+        <h2 className="text-xl font-semibold text-gray-800 mb-6">Acquista per Categoria</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((cat) => (
             <Link
-              key={product.id}
-              to="/products/$productId"
-              params={{ productId: product.id.toString() }}
+              key={cat.slug}
+              to="/products/category/$category"
+              params={{ category: cat.slug }}
               className="group rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow bg-white"
             >
               <div className="aspect-[4/3] overflow-hidden bg-gray-100">
                 <img
-                  src={product.image}
-                  alt={product.name}
+                  src={cat.image}
+                  alt={cat.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-gray-900">{product.name}</h3>
-                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{product.shortDescription}</p>
-                <p className="text-lg font-bold text-gray-900 mt-2">${product.price.toLocaleString()}</p>
+                <h3 className="font-semibold text-gray-900">{cat.name}</h3>
+                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{cat.description}</p>
               </div>
             </Link>
           ))}
