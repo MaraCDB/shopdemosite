@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+.tanstack
+.output
+.vinxi
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Local Netlify folder
+.netlify
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
