@@ -10,12 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemoNatureRouteImport } from './routes/demo/nature'
 import { Route as DemoClassicRouteImport } from './routes/demo/classic'
+import { Route as DemoNatureIndexRouteImport } from './routes/demo/nature/index'
 import { Route as DemoClassicIndexRouteImport } from './routes/demo/classic/index'
+import { Route as DemoNatureProdottiRouteImport } from './routes/demo/nature/prodotti'
 import { Route as DemoClassicOffersRouteImport } from './routes/demo/classic/offers'
 import { Route as DemoClassicDownloadRouteImport } from './routes/demo/classic/download'
 import { Route as DemoClassicContactRouteImport } from './routes/demo/classic/contact'
 import { Route as DemoClassicProductsIndexRouteImport } from './routes/demo/classic/products/index'
+import { Route as DemoNatureProdottiIdRouteImport } from './routes/demo/nature/prodotti.$id'
 import { Route as DemoClassicProductsProductIdRouteImport } from './routes/demo/classic/products/$productId'
 import { Route as DemoClassicProductsCategoryCategoryRouteImport } from './routes/demo/classic/products/category/$category'
 
@@ -24,15 +28,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoNatureRoute = DemoNatureRouteImport.update({
+  id: '/demo/nature',
+  path: '/demo/nature',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoClassicRoute = DemoClassicRouteImport.update({
   id: '/demo/classic',
   path: '/demo/classic',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoNatureIndexRoute = DemoNatureIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoNatureRoute,
+} as any)
 const DemoClassicIndexRoute = DemoClassicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DemoClassicRoute,
+} as any)
+const DemoNatureProdottiRoute = DemoNatureProdottiRouteImport.update({
+  id: '/prodotti',
+  path: '/prodotti',
+  getParentRoute: () => DemoNatureRoute,
 } as any)
 const DemoClassicOffersRoute = DemoClassicOffersRouteImport.update({
   id: '/offers',
@@ -55,6 +74,11 @@ const DemoClassicProductsIndexRoute =
     path: '/products/',
     getParentRoute: () => DemoClassicRoute,
   } as any)
+const DemoNatureProdottiIdRoute = DemoNatureProdottiIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => DemoNatureProdottiRoute,
+} as any)
 const DemoClassicProductsProductIdRoute =
   DemoClassicProductsProductIdRouteImport.update({
     id: '/products/$productId',
@@ -71,11 +95,15 @@ const DemoClassicProductsCategoryCategoryRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/demo/classic': typeof DemoClassicRouteWithChildren
+  '/demo/nature': typeof DemoNatureRouteWithChildren
   '/demo/classic/contact': typeof DemoClassicContactRoute
   '/demo/classic/download': typeof DemoClassicDownloadRoute
   '/demo/classic/offers': typeof DemoClassicOffersRoute
+  '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
   '/demo/classic/': typeof DemoClassicIndexRoute
+  '/demo/nature/': typeof DemoNatureIndexRoute
   '/demo/classic/products/$productId': typeof DemoClassicProductsProductIdRoute
+  '/demo/nature/prodotti/$id': typeof DemoNatureProdottiIdRoute
   '/demo/classic/products/': typeof DemoClassicProductsIndexRoute
   '/demo/classic/products/category/$category': typeof DemoClassicProductsCategoryCategoryRoute
 }
@@ -84,8 +112,11 @@ export interface FileRoutesByTo {
   '/demo/classic/contact': typeof DemoClassicContactRoute
   '/demo/classic/download': typeof DemoClassicDownloadRoute
   '/demo/classic/offers': typeof DemoClassicOffersRoute
+  '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
   '/demo/classic': typeof DemoClassicIndexRoute
+  '/demo/nature': typeof DemoNatureIndexRoute
   '/demo/classic/products/$productId': typeof DemoClassicProductsProductIdRoute
+  '/demo/nature/prodotti/$id': typeof DemoNatureProdottiIdRoute
   '/demo/classic/products': typeof DemoClassicProductsIndexRoute
   '/demo/classic/products/category/$category': typeof DemoClassicProductsCategoryCategoryRoute
 }
@@ -93,11 +124,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/demo/classic': typeof DemoClassicRouteWithChildren
+  '/demo/nature': typeof DemoNatureRouteWithChildren
   '/demo/classic/contact': typeof DemoClassicContactRoute
   '/demo/classic/download': typeof DemoClassicDownloadRoute
   '/demo/classic/offers': typeof DemoClassicOffersRoute
+  '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
   '/demo/classic/': typeof DemoClassicIndexRoute
+  '/demo/nature/': typeof DemoNatureIndexRoute
   '/demo/classic/products/$productId': typeof DemoClassicProductsProductIdRoute
+  '/demo/nature/prodotti/$id': typeof DemoNatureProdottiIdRoute
   '/demo/classic/products/': typeof DemoClassicProductsIndexRoute
   '/demo/classic/products/category/$category': typeof DemoClassicProductsCategoryCategoryRoute
 }
@@ -106,11 +141,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/demo/classic'
+    | '/demo/nature'
     | '/demo/classic/contact'
     | '/demo/classic/download'
     | '/demo/classic/offers'
+    | '/demo/nature/prodotti'
     | '/demo/classic/'
+    | '/demo/nature/'
     | '/demo/classic/products/$productId'
+    | '/demo/nature/prodotti/$id'
     | '/demo/classic/products/'
     | '/demo/classic/products/category/$category'
   fileRoutesByTo: FileRoutesByTo
@@ -119,19 +158,26 @@ export interface FileRouteTypes {
     | '/demo/classic/contact'
     | '/demo/classic/download'
     | '/demo/classic/offers'
+    | '/demo/nature/prodotti'
     | '/demo/classic'
+    | '/demo/nature'
     | '/demo/classic/products/$productId'
+    | '/demo/nature/prodotti/$id'
     | '/demo/classic/products'
     | '/demo/classic/products/category/$category'
   id:
     | '__root__'
     | '/'
     | '/demo/classic'
+    | '/demo/nature'
     | '/demo/classic/contact'
     | '/demo/classic/download'
     | '/demo/classic/offers'
+    | '/demo/nature/prodotti'
     | '/demo/classic/'
+    | '/demo/nature/'
     | '/demo/classic/products/$productId'
+    | '/demo/nature/prodotti/$id'
     | '/demo/classic/products/'
     | '/demo/classic/products/category/$category'
   fileRoutesById: FileRoutesById
@@ -139,6 +185,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DemoClassicRoute: typeof DemoClassicRouteWithChildren
+  DemoNatureRoute: typeof DemoNatureRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -150,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/nature': {
+      id: '/demo/nature'
+      path: '/demo/nature'
+      fullPath: '/demo/nature'
+      preLoaderRoute: typeof DemoNatureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/classic': {
       id: '/demo/classic'
       path: '/demo/classic'
@@ -157,12 +211,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoClassicRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/nature/': {
+      id: '/demo/nature/'
+      path: '/'
+      fullPath: '/demo/nature/'
+      preLoaderRoute: typeof DemoNatureIndexRouteImport
+      parentRoute: typeof DemoNatureRoute
+    }
     '/demo/classic/': {
       id: '/demo/classic/'
       path: '/'
       fullPath: '/demo/classic/'
       preLoaderRoute: typeof DemoClassicIndexRouteImport
       parentRoute: typeof DemoClassicRoute
+    }
+    '/demo/nature/prodotti': {
+      id: '/demo/nature/prodotti'
+      path: '/prodotti'
+      fullPath: '/demo/nature/prodotti'
+      preLoaderRoute: typeof DemoNatureProdottiRouteImport
+      parentRoute: typeof DemoNatureRoute
     }
     '/demo/classic/offers': {
       id: '/demo/classic/offers'
@@ -191,6 +259,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/demo/classic/products/'
       preLoaderRoute: typeof DemoClassicProductsIndexRouteImport
       parentRoute: typeof DemoClassicRoute
+    }
+    '/demo/nature/prodotti/$id': {
+      id: '/demo/nature/prodotti/$id'
+      path: '/$id'
+      fullPath: '/demo/nature/prodotti/$id'
+      preLoaderRoute: typeof DemoNatureProdottiIdRouteImport
+      parentRoute: typeof DemoNatureProdottiRoute
     }
     '/demo/classic/products/$productId': {
       id: '/demo/classic/products/$productId'
@@ -234,9 +309,35 @@ const DemoClassicRouteWithChildren = DemoClassicRoute._addFileChildren(
   DemoClassicRouteChildren,
 )
 
+interface DemoNatureProdottiRouteChildren {
+  DemoNatureProdottiIdRoute: typeof DemoNatureProdottiIdRoute
+}
+
+const DemoNatureProdottiRouteChildren: DemoNatureProdottiRouteChildren = {
+  DemoNatureProdottiIdRoute: DemoNatureProdottiIdRoute,
+}
+
+const DemoNatureProdottiRouteWithChildren =
+  DemoNatureProdottiRoute._addFileChildren(DemoNatureProdottiRouteChildren)
+
+interface DemoNatureRouteChildren {
+  DemoNatureProdottiRoute: typeof DemoNatureProdottiRouteWithChildren
+  DemoNatureIndexRoute: typeof DemoNatureIndexRoute
+}
+
+const DemoNatureRouteChildren: DemoNatureRouteChildren = {
+  DemoNatureProdottiRoute: DemoNatureProdottiRouteWithChildren,
+  DemoNatureIndexRoute: DemoNatureIndexRoute,
+}
+
+const DemoNatureRouteWithChildren = DemoNatureRoute._addFileChildren(
+  DemoNatureRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DemoClassicRoute: DemoClassicRouteWithChildren,
+  DemoNatureRoute: DemoNatureRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
