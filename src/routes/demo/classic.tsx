@@ -12,7 +12,7 @@ function ClassicLayout() {
     <div data-demo="classic" className="flex flex-col min-h-screen">
       <DemoBar />
       <Header />
-      <main className="flex-1 pt-16">
+      <main className="flex-1">
         <Outlet />
       </main>
       <Footer />
