@@ -20,7 +20,7 @@ const demos = [
     title: 'Nature — Bottega bio',
     description:
       'Negozio di cibo curato, biologico e del territorio. Stile botanico, caldo ed editoriale.',
-    image: '/resources/shop3.png',
+    image: '/resources/002_green_benvenuti.png',
     accent: '#2f5d3a',
   },
 ]
