@@ -17,7 +17,7 @@ const files = [
   },
 ]
 
-export const Route = createFileRoute('/download')({
+export const Route = createFileRoute('/demo/classic/download')({
   component: DownloadPage,
 })
 

@@ -1,5 +1,59 @@
 @import "tailwindcss" source("../");
 
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-contrast: #ffffff;
+  --accent: #2563eb;
+  --border: #e5e7eb;
+  --radius: 0.75rem;
+  --font-head: system-ui, -apple-system, sans-serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+}
+
+[data-demo="classic"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-contrast: #ffffff;
+  --accent: #2563eb;
+  --border: #e5e7eb;
+  --radius: 0.75rem;
+  --font-head: system-ui, -apple-system, sans-serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+}
+
+[data-demo="nature"] {
+  --bg: #f3f1e7;
+  --surface: #ffffff;
+  --text: #2f3a2e;
+  --muted: #5a6b50;
+  --primary: #2f5d3a;
+  --primary-contrast: #f3f1e7;
+  --accent: #85a86a;
+  --border: #d9d3bf;
+  --radius: 14px;
+  --font-head: Georgia, 'Times New Roman', serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+}
+
+[data-demo] {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+[data-demo="nature"] h1,
+[data-demo="nature"] h2,
+[data-demo="nature"] h3 {
+  font-family: var(--font-head);
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;

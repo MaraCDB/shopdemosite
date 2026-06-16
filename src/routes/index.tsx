@@ -1,78 +1,83 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { Carousel } from '@/components/Carousel'
-import type { CarouselSlide } from '@/components/Carousel'
-import { categories } from '@/data/products'
+import { createFileRoute } from '@tanstack/react-router'
+import { ArrowLeft, Mail } from 'lucide-react'
+import { DemoCard } from '@/components/portfolio/DemoCard'
 
 export const Route = createFileRoute('/')({
-  component: HomePage,
+  component: PortfolioHome,
 })
 
-const heroSlides: CarouselSlide[] = [
+const demos = [
   {
-    image: '/resources/shop3.png',
-    alt: 'Benvenuti da Small Business',
-    caption: 'Benvenuti da Small Business',
-    subcaption: 'Prodotti e servizi di qualità per la nostra comunità',
-  },
-  {
-    image: '/resources/shop2.png',
-    alt: 'I Nostri Prodotti',
-    caption: 'Scopri i Nostri Prodotti',
-    subcaption: 'Trova esattamente ciò che cerchi',
-    href: '/products',
-  },
-  {
+    to: '/demo/classic',
+    title: 'Classic — Negozio locale',
+    description:
+      'Storefront pulito e versatile per una piccola impresa: catalogo, categorie, offerte, contatti.',
     image: '/resources/shop1.png',
-    alt: 'Vieni a Trovarci',
-    caption: 'Vieni a Trovarci',
-    subcaption: 'Stazione FS di Rovereto — Lun–Ven 9:00–18:00',
-    href: '/contact',
+    accent: '#2563eb',
+  },
+  {
+    to: '/demo/nature',
+    title: 'Nature — Bottega bio',
+    description:
+      'Negozio di cibo curato, biologico e del territorio. Stile botanico, caldo ed editoriale.',
+    image: '/resources/shop3.png',
+    accent: '#2f5d3a',
   },
 ]
 
-function HomePage() {
+function PortfolioHome() {
   return (
-    <div>
-      {/* Hero Carousel */}
-      <section className="px-4 py-6 max-w-6xl mx-auto">
-        <Carousel slides={heroSlides} />
-      </section>
-
-      {/* Intro */}
-      <section className="max-w-6xl mx-auto px-4 py-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">Small Business</h1>
-        <p className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
-          Siamo un'attività a conduzione locale, dedicata alla nostra comunità con
-          prodotti di qualità e un servizio impeccabile. Sfoglia il nostro catalogo qui sotto.
+    <div className="min-h-screen bg-gray-50">
+      <header className="max-w-5xl mx-auto px-4 pt-12 pb-8">
+        <a
+          href="https://mara-melchiori.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-6"
+        >
+          <ArrowLeft size={16} />
+          Torna al mio sito
+        </a>
+        <h1 className="text-4xl font-bold text-gray-900">Siti demo</h1>
+        <p className="text-gray-500 mt-2 max-w-xl">
+          Una raccolta di siti dimostrativi che ho realizzato. Ogni demo mostra
+          uno stile e un'impostazione diversa. Dai un'occhiata.
         </p>
-      </section>
+      </header>
 
-      {/* Product Categories */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">Acquista per Categoria</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat) => (
-            <Link
-              key={cat.slug}
-              to="/products/category/$category"
-              params={{ category: cat.slug }}
-              className="group rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow bg-white"
-            >
-              <div className="aspect-[4/3] overflow-hidden bg-gray-100">
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-900">{cat.name}</h3>
-                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{cat.description}</p>
-              </div>
-            </Link>
+      <main className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {demos.map((d) => (
+            <DemoCard key={d.to} {...d} />
           ))}
         </div>
-      </section>
+      </main>
+
+      <footer className="border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-sm text-gray-500">
+            Sito demo creato da Mara. Realizzo siti su misura, con pacchetti
+            anche per piccole imprese.
+          </p>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://mara-melchiori.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700 transition-colors"
+            >
+              Visita il mio sito
+            </a>
+            <a
+              href="mailto:mara.melchiori@gmail.com"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:border-gray-500 transition-colors"
+            >
+              <Mail size={16} />
+              Contattami
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

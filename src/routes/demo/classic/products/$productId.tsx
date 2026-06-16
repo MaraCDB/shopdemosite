@@ -1,14 +1,14 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
-import products, { categories } from '../../data/products'
+import { Link, createFileRoute, notFound } from '@tanstack/react-router'
+import products, { categories } from '@/demos/classic/data/products'
 
-export const Route = createFileRoute('/products/$productId')({
+export const Route = createFileRoute('/demo/classic/products/$productId')({
   component: RouteComponent,
   loader: async ({ params }) => {
     const product = products.find(
       (product) => product.id === +params.productId,
     )
     if (!product) {
-      throw new Error('Product not found')
+      throw notFound()
     }
     const category = categories.find((c) => c.slug === product.category)
     return { product, category }
@@ -31,14 +31,14 @@ function RouteComponent() {
       <div className="w-full md:w-[45%] p-8">
         {category ? (
           <Link
-            to="/products/category/$category"
+            to="/demo/classic/products/category/$category"
             params={{ category: category.slug }}
             className="inline-block mb-4 text-gray-500 hover:text-gray-900 transition-colors"
           >
             &larr; Torna a {category.name}
           </Link>
         ) : (
-          <Link to="/products" className="inline-block mb-4 text-gray-500 hover:text-gray-900 transition-colors">
+          <Link to="/demo/classic/products" className="inline-block mb-4 text-gray-500 hover:text-gray-900 transition-colors">
             &larr; Torna ai prodotti
           </Link>
         )}

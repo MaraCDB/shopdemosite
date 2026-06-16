@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
-import offers from '@/data/offers'
-import { OfferCard } from '@/components/OfferCard'
+import offers from '@/demos/classic/data/offers'
+import { OfferCard } from '@/demos/classic/components/OfferCard'
 import { Tag } from 'lucide-react'
 
-export const Route = createFileRoute('/offers')({
+export const Route = createFileRoute('/demo/classic/offers')({
   component: OffersPage,
 })
 

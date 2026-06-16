@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import products, { categories } from '@/data/products'
+import products, { categories } from '@/demos/classic/data/products'
 import { ArrowLeft } from 'lucide-react'
 
-export const Route = createFileRoute('/products/category/$category')({
+export const Route = createFileRoute('/demo/classic/products/category/$category')({
   component: CategoryPage,
   loader: ({ params }) => {
     const category = categories.find((c) => c.slug === params.category)
@@ -22,7 +22,7 @@ function CategoryPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <Link
-        to="/products"
+        to="/demo/classic/products"
         className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-6"
       >
         <ArrowLeft size={16} />
@@ -41,7 +41,7 @@ function CategoryPage() {
           {products.map((product) => (
             <Link
               key={product.id}
-              to="/products/$productId"
+              to="/demo/classic/products/$productId"
               params={{ productId: product.id.toString() }}
               className="group rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow bg-white"
             >
