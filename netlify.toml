@@ -5,3 +5,27 @@
   command = "npm run dev"
   targetPort = 3000
   port = 8888
+
+[[redirects]]
+  from = "/products/*"
+  to = "/demo/classic/products/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/offers"
+  to = "/demo/classic/offers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/demo/classic/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/download"
+  to = "/demo/classic/download"
+  status = 301
+  force = true

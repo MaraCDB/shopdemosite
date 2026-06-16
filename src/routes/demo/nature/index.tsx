@@ -55,13 +55,13 @@ function NatureHome() {
 
       {/* Banner "vieni a trovarci" con immagine cassa */}
       <section className="max-w-6xl mx-auto px-4 pb-14">
-        <a href="/demo/nature/contatti" className="group block relative rounded-[var(--radius)] overflow-hidden" style={{ aspectRatio: '21/8' }}>
+        <Link to="/demo/nature/contatti" className="group block relative rounded-[var(--radius)] overflow-hidden" style={{ aspectRatio: '21/8' }}>
           <img src="/resources/002_green_cassa.png" alt="Vieni a trovarci in bottega" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 to-transparent flex flex-col justify-center p-6 md:p-10">
             <h2 className="text-white text-2xl md:text-3xl font-bold drop-shadow">Vieni a trovarci in bottega</h2>
             <p className="text-white/90 text-sm md:text-base mt-1 drop-shadow max-w-sm">Ti accogliamo con i sapori del territorio. Scopri dove siamo.</p>
           </div>
-        </a>
+        </Link>
       </section>
 
       {/* Prodotti in evidenza — layout asimmetrico */}
