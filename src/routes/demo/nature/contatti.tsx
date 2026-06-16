@@ -37,6 +37,60 @@ function NatureContact() {
               <a href="mailto:bottega@nature.demo" className="text-sm text-[var(--muted)] hover:text-[var(--primary)] transition-colors">bottega@nature.demo</a>
             </div>
           </div>
+
+          <form
+            name="contatti-nature"
+            method="POST"
+            data-netlify="true"
+            className="rounded-[var(--radius)] border border-[var(--border)] p-5 space-y-4"
+            style={{ background: 'var(--surface)' }}
+          >
+            <input type="hidden" name="form-name" value="contatti-nature" />
+            <h3 className="font-semibold" style={{ color: 'var(--text)' }}>Scrivici</h3>
+            <div>
+              <label htmlFor="nome" className="block text-sm font-medium mb-1" style={{ color: 'var(--text)' }}>Nome</label>
+              <input
+                id="nome"
+                name="nome"
+                type="text"
+                required
+                placeholder="Il tuo nome"
+                className="w-full border border-[var(--border)] rounded-[var(--radius)] px-3 py-2 text-sm bg-transparent focus:outline-none focus:ring-2"
+                style={{ color: 'var(--text)' }}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-1" style={{ color: 'var(--text)' }}>Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="tua@email.it"
+                className="w-full border border-[var(--border)] rounded-[var(--radius)] px-3 py-2 text-sm bg-transparent focus:outline-none focus:ring-2"
+                style={{ color: 'var(--text)' }}
+              />
+            </div>
+            <div>
+              <label htmlFor="messaggio" className="block text-sm font-medium mb-1" style={{ color: 'var(--text)' }}>Messaggio</label>
+              <textarea
+                id="messaggio"
+                name="messaggio"
+                required
+                rows={4}
+                placeholder="Come possiamo aiutarti?"
+                className="w-full border border-[var(--border)] rounded-[var(--radius)] px-3 py-2 text-sm bg-transparent resize-none focus:outline-none focus:ring-2"
+                style={{ color: 'var(--text)' }}
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full rounded-[var(--radius)] py-2 px-4 text-sm font-semibold transition-colors"
+              style={{ background: 'var(--primary)', color: 'var(--primary-contrast)' }}
+            >
+              Invia messaggio
+            </button>
+          </form>
         </div>
         <div className="rounded-[var(--radius)] overflow-hidden border border-[var(--border)] min-h-[360px]">
           <iframe

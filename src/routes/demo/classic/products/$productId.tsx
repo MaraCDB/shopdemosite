@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import products, { categories } from '@/demos/classic/data/products'
 
 export const Route = createFileRoute('/demo/classic/products/$productId')({
@@ -8,7 +8,7 @@ export const Route = createFileRoute('/demo/classic/products/$productId')({
       (product) => product.id === +params.productId,
     )
     if (!product) {
-      throw new Error('Product not found')
+      throw notFound()
     }
     const category = categories.find((c) => c.slug === product.category)
     return { product, category }
