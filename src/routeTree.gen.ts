@@ -17,6 +17,7 @@ import { Route as DemoClassicIndexRouteImport } from './routes/demo/classic/inde
 import { Route as DemoNatureStoriaRouteImport } from './routes/demo/nature/storia'
 import { Route as DemoNatureProdottiRouteImport } from './routes/demo/nature/prodotti'
 import { Route as DemoNatureMarchiRouteImport } from './routes/demo/nature/marchi'
+import { Route as DemoNatureContattiRouteImport } from './routes/demo/nature/contatti'
 import { Route as DemoClassicOffersRouteImport } from './routes/demo/classic/offers'
 import { Route as DemoClassicDownloadRouteImport } from './routes/demo/classic/download'
 import { Route as DemoClassicContactRouteImport } from './routes/demo/classic/contact'
@@ -65,6 +66,11 @@ const DemoNatureMarchiRoute = DemoNatureMarchiRouteImport.update({
   path: '/marchi',
   getParentRoute: () => DemoNatureRoute,
 } as any)
+const DemoNatureContattiRoute = DemoNatureContattiRouteImport.update({
+  id: '/contatti',
+  path: '/contatti',
+  getParentRoute: () => DemoNatureRoute,
+} as any)
 const DemoClassicOffersRoute = DemoClassicOffersRouteImport.update({
   id: '/offers',
   path: '/offers',
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/demo/classic/contact': typeof DemoClassicContactRoute
   '/demo/classic/download': typeof DemoClassicDownloadRoute
   '/demo/classic/offers': typeof DemoClassicOffersRoute
+  '/demo/nature/contatti': typeof DemoNatureContattiRoute
   '/demo/nature/marchi': typeof DemoNatureMarchiRoute
   '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
   '/demo/nature/storia': typeof DemoNatureStoriaRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/demo/classic/contact': typeof DemoClassicContactRoute
   '/demo/classic/download': typeof DemoClassicDownloadRoute
   '/demo/classic/offers': typeof DemoClassicOffersRoute
+  '/demo/nature/contatti': typeof DemoNatureContattiRoute
   '/demo/nature/marchi': typeof DemoNatureMarchiRoute
   '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
   '/demo/nature/storia': typeof DemoNatureStoriaRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/demo/classic/contact': typeof DemoClassicContactRoute
   '/demo/classic/download': typeof DemoClassicDownloadRoute
   '/demo/classic/offers': typeof DemoClassicOffersRoute
+  '/demo/nature/contatti': typeof DemoNatureContattiRoute
   '/demo/nature/marchi': typeof DemoNatureMarchiRoute
   '/demo/nature/prodotti': typeof DemoNatureProdottiRouteWithChildren
   '/demo/nature/storia': typeof DemoNatureStoriaRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/demo/classic/contact'
     | '/demo/classic/download'
     | '/demo/classic/offers'
+    | '/demo/nature/contatti'
     | '/demo/nature/marchi'
     | '/demo/nature/prodotti'
     | '/demo/nature/storia'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/demo/classic/contact'
     | '/demo/classic/download'
     | '/demo/classic/offers'
+    | '/demo/nature/contatti'
     | '/demo/nature/marchi'
     | '/demo/nature/prodotti'
     | '/demo/nature/storia'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/demo/classic/contact'
     | '/demo/classic/download'
     | '/demo/classic/offers'
+    | '/demo/nature/contatti'
     | '/demo/nature/marchi'
     | '/demo/nature/prodotti'
     | '/demo/nature/storia'
@@ -268,6 +280,13 @@ declare module '@tanstack/react-router' {
       path: '/marchi'
       fullPath: '/demo/nature/marchi'
       preLoaderRoute: typeof DemoNatureMarchiRouteImport
+      parentRoute: typeof DemoNatureRoute
+    }
+    '/demo/nature/contatti': {
+      id: '/demo/nature/contatti'
+      path: '/contatti'
+      fullPath: '/demo/nature/contatti'
+      preLoaderRoute: typeof DemoNatureContattiRouteImport
       parentRoute: typeof DemoNatureRoute
     }
     '/demo/classic/offers': {
@@ -359,6 +378,7 @@ const DemoNatureProdottiRouteWithChildren =
   DemoNatureProdottiRoute._addFileChildren(DemoNatureProdottiRouteChildren)
 
 interface DemoNatureRouteChildren {
+  DemoNatureContattiRoute: typeof DemoNatureContattiRoute
   DemoNatureMarchiRoute: typeof DemoNatureMarchiRoute
   DemoNatureProdottiRoute: typeof DemoNatureProdottiRouteWithChildren
   DemoNatureStoriaRoute: typeof DemoNatureStoriaRoute
@@ -366,6 +386,7 @@ interface DemoNatureRouteChildren {
 }
 
 const DemoNatureRouteChildren: DemoNatureRouteChildren = {
+  DemoNatureContattiRoute: DemoNatureContattiRoute,
   DemoNatureMarchiRoute: DemoNatureMarchiRoute,
   DemoNatureProdottiRoute: DemoNatureProdottiRouteWithChildren,
   DemoNatureStoriaRoute: DemoNatureStoriaRoute,
