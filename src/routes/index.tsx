@@ -30,7 +30,7 @@ function PortfolioHome() {
     <div className="min-h-screen bg-gray-50">
       <header className="max-w-5xl mx-auto px-4 pt-12 pb-8">
         <a
-          href="https://mara-melchiori.netlify.app/"
+          href="https://maramelchiori.it/"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-6"
@@ -61,7 +61,7 @@ function PortfolioHome() {
           </p>
           <div className="flex items-center gap-3">
             <a
-              href="https://mara-melchiori.netlify.app/"
+              href="https://maramelchiori.it/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700 transition-colors"
