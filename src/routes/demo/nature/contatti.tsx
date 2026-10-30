@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { MapPin, Clock, Mail } from 'lucide-react'
 
@@ -6,6 +7,8 @@ export const Route = createFileRoute('/demo/nature/contatti')({
 })
 
 function NatureContact() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--primary)' }}>Contatti</h1>
@@ -40,12 +43,13 @@ function NatureContact() {
 
           <form
             name="contatti-nature"
-            method="POST"
-            data-netlify="true"
+            onSubmit={(event) => {
+              event.preventDefault()
+              setIsSubmitted(true)
+            }}
             className="rounded-[var(--radius)] border border-[var(--border)] p-5 space-y-4"
             style={{ background: 'var(--surface)' }}
           >
-            <input type="hidden" name="form-name" value="contatti-nature" />
             <h3 className="font-semibold" style={{ color: 'var(--text)' }}>Scrivici</h3>
             <div>
               <label htmlFor="nome" className="block text-sm font-medium mb-1" style={{ color: 'var(--text)' }}>Nome</label>
@@ -90,6 +94,9 @@ function NatureContact() {
             >
               Invia messaggio
             </button>
+            {isSubmitted && (
+              <p role="status" className="text-sm text-[var(--muted)]">Questa è una demo, il messaggio non viene inviato.</p>
+            )}
           </form>
         </div>
         <div className="rounded-[var(--radius)] overflow-hidden border border-[var(--border)] min-h-[360px]">

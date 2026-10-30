@@ -1,0 +1,1 @@
+{"build": "corepack pnpm run build", "output": "dist/client"}

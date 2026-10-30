@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 
@@ -6,6 +7,8 @@ export const Route = createFileRoute('/demo/classic/contact')({
 })
 
 function ContactPage() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Contatti</h1>
@@ -69,11 +72,12 @@ function ContactPage() {
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Inviaci un Messaggio</h2>
             <form
               name="contact"
-              method="POST"
-              data-netlify="true"
+              onSubmit={(event) => {
+                event.preventDefault()
+                setIsSubmitted(true)
+              }}
               className="space-y-4"
             >
-              <input type="hidden" name="form-name" value="contact" />
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
                 <input
@@ -113,6 +117,9 @@ function ContactPage() {
               >
                 Invia Messaggio
               </button>
+              {isSubmitted && (
+                <p role="status" className="text-sm text-gray-500">Questa è una demo, il messaggio non viene inviato.</p>
+              )}
             </form>
           </div>
         </div>
