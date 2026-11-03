@@ -63,3 +63,27 @@ body {
 code {
   font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-ready [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 901px) {
+  .reveal-ready [data-reveal] {
+    transform: translateY(14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
